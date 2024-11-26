@@ -1,3 +1,11 @@
 latex
 pdfs
 references
+# Ignore example outputs
+examples/output
+# Ignore input and output directories
+input/*
+output/*
+# But keep the directories
+!input/.gitkeep
+!output/.gitkeep

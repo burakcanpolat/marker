@@ -159,35 +159,46 @@ This guide provides instructions for setting up Marker on Windows with RTX 2060,
 - Optimal for documents up to 50 pages
 - Best quality/speed ratio with current settings
 
+# Setup and Usage Guide
 
-# PDF Chunking Guide
+## Installation
 
-This guide explains how to use the `chunk_pdf.py` script to process PDF files in chunks.
+1. Clone the repository:
+```bash
+git clone https://github.com/yourusername/marker.git
+cd marker
+```
 
-## Prerequisites
+2. Install Poetry (if not already installed):
+```bash
+curl -sSL https://install.python-poetry.org | python3 -
+```
 
-- Python 3.x
-- Poetry for dependency management
-- The required dependencies installed via Poetry
+3. Install dependencies:
+```bash
+poetry install
+```
 
-## Usage
+## PDF Processing Tools
 
-The script allows you to process PDF files in chunks with customizable start pages and chunk sizes.
+### PDF Chunking Tool
 
-### Basic Command Structure
+This tool allows you to process PDF files in chunks with customizable start pages and chunk sizes.
+
+#### Basic Command Structure
 
 ```bash
 poetry run python chunk_pdf.py <input_pdf> <output_dir> [--start-page PAGE] [--chunk-size SIZE]
 ```
 
-### Parameters
+#### Parameters
 
 - `input_pdf`: Path to your input PDF file
 - `output_dir`: Directory where the output markdown files will be saved
 - `--start-page`: (Optional) Page number to start processing from (default: 0)
 - `--chunk-size`: (Optional) Number of pages per chunk (default: 30)
 
-### Examples
+#### Examples
 
 1. Process a PDF from the beginning with default chunk size (30 pages):
 ```bash
@@ -204,7 +215,7 @@ poetry run python chunk_pdf.py "Crawl4AI_Code_Docs.pdf" "data/output" --start-pa
 poetry run python chunk_pdf.py "Crawl4AI_Code_Docs.pdf" "data/output" --chunk-size 20
 ```
 
-### Output Format
+#### Output Format
 
 The script will create markdown files in the output directory with names following this pattern:
 ```
@@ -212,10 +223,55 @@ The script will create markdown files in the output directory with names followi
 ```
 For example: `Crawl4AI_Code_Docs_P_60-90.md`
 
-## Interactive Mode
+#### Interactive Mode
 
 After processing each chunk, the script will ask if you want to continue with the next chunk. 
 - Type 'y' to process the next chunk
 - Type 'n' to stop processing
 
 This allows you to control the processing and check the output between chunks.
+
+## Project Structure
+
+```
+marker/
+├── chunk_pdf.py          # PDF chunking script
+├── convert_single.py     # Single PDF conversion script
+├── data/                 # Data directory
+│   ├── input/           # Input PDFs
+│   └── output/          # Output markdown files
+└── poetry.lock          # Poetry dependency lock file
+```
+
+## Troubleshooting
+
+If you encounter any issues:
+
+1. Ensure all dependencies are installed:
+```bash
+poetry install
+```
+
+2. Check if the input PDF file exists and is readable
+3. Verify that the output directory is writable
+4. Make sure you have sufficient disk space for the output files
+
+## Contributing
+
+1. Create a new branch for your feature:
+```bash
+git checkout -b feature-name
+```
+
+2. Make your changes and commit them:
+```bash
+git add .
+git commit -m "Description of changes"
+```
+
+3. Push to your branch:
+```bash
+git push origin feature-name
+```
+
+4. Create a Pull Request on GitHub
